@@ -102,7 +102,7 @@ void basic ()
       if(Quit())
       return ;
       else
-      cout<<"NOT A NUMBER  "<<endl;
+      cout<<"Not a number  "<<endl;
     }
   }
 }
@@ -655,11 +655,65 @@ void exponential()
       if(Quit())
       return;
       else
-      cout<<"NOT A NUMBER"<<endl;
+      cout<<"Not a number"<<endl;
     }
     else
     cout<<"Ans = "<<exp(var)<<endl;
   }
+}
+double fact(double a)
+{
+  if(a==0 || a==1)
+  return 1;
+  else
+  return a* fact(a-1);
+}
+void factorial()
+{
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  double var;
+  while(1)
+ {
+  cout<<"Enter number for which you want to find factorial : ";
+  cin>>var;
+  if(cin.fail())
+  {
+    if(Quit())
+    return;
+    else
+      cout<<"Please enter valid number"<<endl;
+  }
+  else
+    cout<<"Ans = "<<fact(var)<<endl<<endl;
+ }
+}
+void details()
+{
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"-> If you want to back from any page you can simply write 'wq' "<<endl;
+  cout<<"-> If you want to do basic calculaion like addition ,subtraction ,multiplication ,division and power you can perform by basic calculation option "<<endl;
+  cout<<"-> for value of trigonometric fun and its inverse you can use given option respectively "<<endl;
+  
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  string s;
+  cout<<"Enter 'wq' for <- back : ";  
+  while(1)
+  {
+  cin>>s;
+  if(s=="wq")
+  return ;
+  else
+  {
+    cout<<"Wrong input"<<endl;
+  }
+}
+
 }
 int main()
 {
@@ -689,16 +743,18 @@ cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
   {
   system("cls");
   cout<<endl;
-  cout<<"1 : basic calculation  "<<endl;
-  cout<<"2 : for matrix calculation  "<<endl;
-  cout<<"3 : for triginomatric calculation "<<endl;
-  cout<<"4 : for inverse trigonomtric calculation"<<endl;
-  cout<<"5 : for logerithem "<<endl;
-  cout<<"6 : for exponential function base e"<<endl;
-  cout<<"7 : Quit from calculator "<<endl;
+  cout<<"1 : Basic calculation  "<<endl;
+  cout<<"2 : For matrix calculation  "<<endl;
+  cout<<"3 : For triginomatric calculation "<<endl;
+  cout<<"4 : For inverse trigonomtric calculation"<<endl;
+  cout<<"5 : For logerithem "<<endl;
+  cout<<"6 : For exponential function base e"<<endl;
+  cout<<"7 : For factorial of any number"<<endl;
+  cout<<"8 : How to use"<<endl;
+  cout<<"8 : Quit from calculator "<<endl;
   cout<<"Enter your choice : ";
   cin >>n;
-  if(cin.fail() || !(n>0 && n<=7))
+  if(cin.fail() || !(n>0 && n<=8))
   {
     if(Quit())
     return 0;
@@ -727,7 +783,11 @@ cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
       break;
       case 6 : exponential();
       break;
-      case 7:return 0;
+      case 7 : factorial();
+      break;
+      case 8 : details();
+      break;
+      case 9:return 0;
     }
   }
 }
