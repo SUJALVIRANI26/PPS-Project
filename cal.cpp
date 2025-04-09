@@ -5,7 +5,33 @@
 #include<windows.h>
 #include<iomanip>
 using namespace std;
-
+bool Quit() //this function is used to check is user want to Quit or not 
+{
+  if(cin.fail())
+  {
+  cin.clear();
+  string s;
+  getline(cin,s);
+  if(s=="wq")
+  return true;
+  else
+  return false;
+  }
+  fflush(stdin);
+}
+bool Quit(int n) //this function if anyone write wq than it will return else it show wrong input
+{
+   string s;
+   while(1)
+   {
+    cout<<"Enter 'wq' for <-back : ";
+    cin>>s;
+    if(s=="wq")
+    return true;
+    else
+    cout<<"Wrong input "<<endl;
+   }
+}
 class Basic
 {
   double a;
@@ -46,81 +72,297 @@ class Basic
       break;
       case '/':cout<<"Ans = "<<a/b<<endl;
       break;
-      case '^':cout<<"Ans = "<<(a,b)<<endl;
+      case '^':cout<<"Ans = "<<pow(a,b)<<endl;
       break;
       default : cout<<"Please  Enter valid operator "<<endl;
       break;
     }
   }
 };
-bool Quit(int n) //this function if anyone wrijo mste Quit than it will return else it show wrong input
+class Matrix
 {
- 
-    string s;
-   while(1)
-   {
-    cout<<"Enter 'wq' for <-back : ";
-    cin>>s;
-    if(s=="wq")
-    return true;
-    else
-    cout<<"Wrong input "<<endl;
-   }
-  
-}
-bool Quit() //this function is used to check is user want to Quit or not 
-{
-  if(cin.fail())
+ int r1;
+ int r2;
+ int c1;
+ int c2;
+ int **ptr1;
+ int **ptr2;
+  public :
+  Matrix(){};
+  Matrix(int r1,int c1,int r2 ,int c2):r1(r1),r2(r2),c1(c1),c2(c2)
   {
-  cin.clear();
-  string s;
-  getline(cin,s);
-  if(s=="wq")
-  return true;
-  else
-  return false;
+    ptr1= new int *[r1];
+    for(int i=0;i<r1;i++)
+      ptr1[i]=new int [c1];
+
+    ptr2 =new int * [r2];
+    for(int i=0;i<r2;i++)
+      ptr2[i]=new int [c2];
   }
-  fflush(stdin);
-}
-void basic ()
-{
-  system("cls");//clear console 
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  Basic basic_cal;
-  while(!cin.fail())
+  ~Matrix()
   {
-    basic_cal.gD();
-    if(!cin.fail())
-    {
-       basic_cal.basic_cal_fun();
-    }
+   for(int i=0;i<c1;i++)
+    delete [] ptr1[i];
+   for(int i=0;i<c2;i++)
+    delete ptr2[i];
+    delete []ptr1;
+    delete []ptr2;
+  }
+   bool read();
+   void cal();
+   void add();
+   void subtract();
+   void mul();
+};
+class Log
+{
+   double var;
+   public:
+   void log_base_10();
+   void log_base_e();
+};
+class Trigonometry
+{
+  protected:
+  double var;
+  int m;
+  public :
+  bool trig_fun();
+  virtual int trigo()=0;
+  virtual void trigonometry_function(int n)=0;
+};
+class Trigo : public Trigonometry
+{
+  public :
+ int trigo();
+ void trigonometry_function(int n);
+
+};
+class Inverse_Trigo : public Trigonometry
+{
+public :
+int trigo();
+void trigonometry_function(int n);
+};
+int Trigo ::trigo()
+{
+    int n;
+  
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+//   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+//   cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+ 
+  cout<<"1 : sin0"<<endl;
+  cout<<"2 : cos0"<<endl;
+  cout<<"3 : tan0"<<endl;
+  cout<<"4 : cosec0"<<endl;
+  cout<<"5 : sec0"<<endl;
+  cout<<"6 : cot0"<<endl;
+  cout<<"7 : back"<<endl;
+  cout<<"Enter your choice : ";
+  cin>>n;
+  while(cin.fail() || (n>7 || n<=0))
+  {
+    if(Quit())
+    return 7;
     else
+    {
+      cout<<"Please enter valid number "<<endl;
+      cin>>n;
+    }
+  }
+ 
+ return n;
+}
+int Inverse_Trigo ::trigo()
+{
+    system("cls");
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    // SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+    // cout<<"Enter 'wq' for <- back "<<endl<<endl;
+    SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+    int n;
+    cout<<"1 : for Inverse of sin"<<endl;
+    cout<<"2 : for Inverse of cos"<<endl;
+    cout<<"3 : for Inverse of tan"<<endl;
+    cout<<"4 : for Inverse of cosec"<<endl;
+    cout<<"5 : for Inverse of sec"<<endl;
+    cout<<"6 : for Inverse of cot"<<endl;
+    cout<<"7 : back"<<endl;
+    cout<<"Enter your choice : ";
+    cin>>n;
+    while(cin.fail() || (n > 7 || n <= 0))
     {
       if(Quit())
-      return ;
+      return 7;
       else
-      cout<<"Not a number  "<<endl;
+      {
+        cout<<"Please enter valid number "<<endl;
+        cin>>n;
+      }
     }
+    return n;
   }
+  void Trigo ::trigonometry_function(int n)
+  {
+    system("cls");
+    double x;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+     cout<<"Enter 'wq' for <- back "<<endl<<endl;
+     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+     while(1)
+     {
+       cin>>var;
+       while(cin.fail())
+       {
+          if(Quit())
+           return  ;
+          else
+          {
+           cout<<"Please enter valid number "<<endl;
+           cin>>var;
+          }
+       }
+        if(m==2)
+        {
+            x=var;
+            var=(var * M_PI) / 180.0;
+        }
+        else
+        x=var;
+         
+        switch(n)
+         {
+             case 1 :cout<<"sin("<<x<<") = "<<sin(var)<<endl;
+             break;
+             case 2 : cout <<"cos("<<x<<") = "<<cos(var)<<endl;
+             break;
+             case 3 :cout<<"tan("<<x<<") = "<<tan(var)<<endl;
+             break;
+             case 4 :cout<<"cosec("<<x<<") = "<<(1/sin(var))<<endl;
+             break;
+             case 5 :cout<<"sec("<<x<<") = "<<(1/cos(var))<<endl;
+             break;
+             case 6 :cout<<"cot("<<x<<") = "<<(1/tan(var))<<endl;
+             break;
+          }
+     }
+  }
+  void Inverse_Trigo ::trigonometry_function(int n)
+  {
+    system("cls");
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+     cout<<"Enter 'wq' for <- back "<<endl<<endl;
+     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+     while(1)
+     {
+       cin>>var;
+       while(cin.fail())
+       {
+          if(Quit())
+           return ;
+          else
+          {
+           cout<<"Please enter valid number "<<endl;
+           cin>>var;
+          }
+       }
+       if(m==2)
+        {
+          switch(n)
+          {
+           case 1 :cout<<"Inverse of sin "<<var<<" : ";
+           cout<<((asin(var)*180.0)/M_PI)<<endl;
+           break;
+           case 2 :cout<<"Inverse of cos "<<var<<" : ";
+           cout <<((acos(var)*180.0)/M_PI)<<endl;
+           break;
+           case 3 :cout<<"Inverse of tan "<<var<<" : ";
+           cout<<((atan(var)*180.0)/M_PI)<<endl;
+           break;
+           case 4 :cout<<"Inverse of cosec "<<var<<" : ";
+           cout<<((asin(1/var)*180.0)/M_PI)<<endl;
+           break;
+           case 5 :cout<<"Inverse of sec "<<var<<" : ";
+           cout<<((acos(1/var)*180.0)/M_PI)<<endl;
+           break;
+           case 6 :cout<<"Inverse of cot "<<var<<" : ";
+           cout<<((atan(1/var)*180.0)/M_PI)<<endl;
+           break;
+         } 
+        }
+        else
+        {
+          switch(n)
+          {
+           case 1 :cout<<"Inverse of sin "<<var<<" : ";
+           cout<<asin(var)<<endl;
+           break;
+           case 2 : cout<<"Inverse of cos "<<var<<" : ";
+           cout <<acos(var)<<endl;
+            break;
+           case 3 :cout<<"Inverse of tan "<<var<<" : ";
+           cout<<atan(var)<<endl;
+           break;
+           case 4 :cout<<"Inverse of cosec "<<var<<" : ";
+           cout<<(asin(1/var))<<endl;
+           break;
+           case 5 :cout<<"Inverse of sec "<<var<<" : ";
+           cout<<(acos(1/var))<<endl;
+            break;
+            case 6 :cout<<"Inverse of cot "<<var<<" : ";
+            cout<<(atan(1/var))<<endl;
+            break;
+         } 
+        }
+    }
 }
-bool read(int r1,int c1,int r2,int c2,double *m1,double *m2)
+bool Trigonometry ::  trig_fun()
+{
+    system("cls");
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    // SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+    //  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+      cout<<"1 : for angle in radian "<<endl;
+      cout<<"2 : for angle in degree "<<endl;
+      cout<<"3 : back "<<endl;
+      cout<<"Enter your choice : ";
+      cin>>m;
+    while(cin.fail() || (m>3 || m<=0))
+    {
+        if( Quit())
+         return true;
+        else
+       {
+         cout<<"Please enter valid number "<<endl;
+         cin>>m;
+       }
+    }
+    if(m==3)
+    return true;
+    else
+    return false;
+}
+bool Matrix :: read()
 {
   cout<<"Enter first matrix "<<endl;
-  for(int i=0;i<r1;i++) //take matrix from user
+  for(int i=0;i<r1;i++)//take matrix from user
   {
     for(int j=0;j<c1;j++)
     {
-      cin>>*(m1+i*r1+j);
+      cin>>ptr1[i][j];
       while(cin.fail())
       {
         if(Quit())
         return false;
         else
         cout<<"Please enter number : "<<endl;
-        cin>>*(m1+i*r1+j); 
+        cin>>ptr1[i][j]; 
       }
     }
   } 
@@ -131,86 +373,29 @@ bool read(int r1,int c1,int r2,int c2,double *m1,double *m2)
   {
     for(int j=0;j<c2;j++)
     {
-      cin>>*(m2+i*r1+j);
+      cin>>ptr2[i][j];
       while(cin.fail())
       {
         if(Quit())
         return false;
         else
         cout<<"Please enter number : "<<endl;
-        cin>>*(m1+i*r1+j); 
+        cin>>ptr2[i][j]; 
       }
     }
+    cout<<endl;
   }
   fflush(stdin);
  return true;
 }
-void add(int r1,int c1,double  * m1,double * m2,double *m3) //add to matrix and store in third matrix and print it
-{
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-   for(int i=0;i<r1;i++)
-   {
-    for(int j=0;j<c1;j++)
-    {
-      *(m3+i*r1+j) = *(m1+i*r1+j)+*(m2+i*r1+j);
-      cout<< *(m3+i*r1+j)<<' ';
-    }
-    cout<<endl;
-   }
-  Quit(1);
-}
-void subtract(int r1,int c1,double *m1,double *m2,double *m3)//subtract matrix and store in third matrix and print it
-{
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  for(int i=0;i<r1;i++)
-   {
-    for(int j=0;j<c1;j++)
-    {
-      *(m3+i*r1+j) = *(m1+i*r1+j)-*(m2+i*r1+j);
-      cout<< *(m3+i*r1+j)<<' ';
-    }
-    cout<<endl;
-   }
-   Quit(1);
-}
-void mul(int r1,int c1,int c2,double *m1,double *m2,double *m3) //mul two matrix and strore in third matrix and print it
-{
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  for(int i=0;i<r1;i++)
-  {
-    for(int j=0;j<c2;j++)
-    {
-      for(int k=0;k<c1;k++)
-      {
-        *(m3+i*r1+j)+=(*(m1+i*r1+k))*(*(m2+k*r1+j));
-      }
-      cout<<*(m3+i*r1+j)<<' ';
-    }
-    cout<<endl;
-  }
-  Quit(1);
-}
-
-void cal(int r1,int c1,int r2,int c2,double *m1,double *m2 ,double *m3)
+void Matrix :: cal()
 {
   while(1)
   {
    system("cls");
    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-   cout<<"Enter 'wq' for <- back "<<endl<<endl;
+//    SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+//    cout<<"Enter 'wq' for <- back "<<endl<<endl;
    SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
    int k;
    cout<<"1 : add "<<endl;
@@ -235,7 +420,7 @@ void cal(int r1,int c1,int r2,int c2,double *m1,double *m2 ,double *m3)
     {
      case 1 : 
       if(r1==r2 && c1==c2)
-       add(r1,c1,m1,m2,m3);
+       add();
        else
        {
         cout<<"addition is not possible "<<endl;
@@ -246,7 +431,7 @@ void cal(int r1,int c1,int r2,int c2,double *m1,double *m2 ,double *m3)
        break;
       case 2 :
       if(r1==r2 && c1==c2)
-        subtract(r1,c1,m1,m2,m3);
+        subtract();
         else
         {
          cout<<"subtraction is not possible"<<endl;
@@ -257,7 +442,7 @@ void cal(int r1,int c1,int r2,int c2,double *m1,double *m2 ,double *m3)
       break;
      case 3 :
        if(c1==r2)
-        mul(r1,c1,c2,m1,m2,m3);
+        mul();
         else
         {
          cout<<"multiplication is not possible "<<endl;
@@ -270,6 +455,125 @@ void cal(int r1,int c1,int r2,int c2,double *m1,double *m2 ,double *m3)
        return;
     }
  }
+}
+void Matrix :: add() //add to matrix and store in third matrix and print it
+{
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+   for(int i=0;i<r1;i++)
+   {
+    for(int j=0;j<c1;j++)
+      cout<< ptr1[i][j]+ptr2[i][j]<<' ';
+    cout<<endl;
+   }
+  Quit(1);
+}
+void Matrix:: subtract()//subtract matrix and store in third matrix and print it
+{
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  for(int i=0;i<r1;i++)
+   {
+    for(int j=0;j<c1;j++)
+      cout<<ptr1[i][j]-ptr2[i][j]<<' ';
+    cout<<endl;
+   }
+   Quit(1);
+}
+void  Matrix :: mul() //mul two matrix and strore in third matrix and print it
+{
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  double temp=0;
+  for(int i=0;i<r1;i++)
+  {
+    for(int j=0;j<c2;j++)
+    {
+      for(int k=0;k<c1;k++)
+        temp+=(ptr1[i][k])*(ptr2[k][j]);
+      cout<<temp<<' ';
+    }
+    cout<<endl;
+  }
+  Quit(1);
+}
+void Log :: log_base_10()
+{
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  
+  while(1)
+  {
+   cout<<"Enter number for which you want to find logerithem : ";
+    cin>>var;
+    while(cin.fail())
+    {
+       if(Quit())
+        return ;
+       else
+       {
+        cout<<"Please enter valid number "<<endl;
+        cin>>var;
+       }
+    }
+    cout<<"log("<<var<<")"<<": "<<log10(var)<<endl;
+  } 
+}
+void Log :: log_base_e()
+{
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  while(1)
+  {
+   cout<<"Enter number for which you want to find logerithem : ";
+    cin>>var;
+    while(cin.fail())
+    {
+       if(Quit())
+        return ;
+       else
+       {
+        cout<<"Please enter valid number "<<endl;
+        cin>>var;
+       }
+    }
+    cout<<"ln("<<var<<") = "<<log(var)<<endl;
+  } 
+}
+void basic ()
+{
+  system("cls");//clear console 
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+  cout<<"Enter 'wq' for <- back "<<endl<<endl;
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  Basic basic_cal;
+  while(!cin.fail())
+  {
+    basic_cal.gD();
+    if(!cin.fail())
+       basic_cal.basic_cal_fun();
+    else
+    {
+      if(Quit())
+      return ;
+      else
+      cout<<"Not a number  "<<endl;
+    }
+  }
 }
 void matrix() // this function is used to take matrix from user  
 {
@@ -332,281 +636,39 @@ void matrix() // this function is used to take matrix from user
   }
   fflush(stdin);
   cout<<endl;
-  double m1[r1][c1],m2[r2][c2],m3[r1][c2];
-  if(read(r1,c1,r2,c2,&m1[0][0],&m2[0][0]))
-  cal(r1,c1,r2,c2,&m1[0][0],&m2[0][0],&m3[0][0]);
-  else
-  return ;
-}
-void trig_fun(int n,int m,bool a)
-{
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-   cout<<"Enter 'wq' for <- back "<<endl<<endl;
-   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  double var;
-  
-  while(1)
-  {
-    cin>>var;
-    while(cin.fail())
-    {
-       if(Quit())
-        return ;
-       else
-       {
-        cout<<"Please enter valid number "<<endl;
-        cin>>var;
-       }
-    }
-    if(m==2 && a==false)
-      var=(var * M_PI) / 180.0;
-      if(a)
-      {
-        if(m==2)
-        {
-          switch(n)
-          {
-           case 1 :
-           cout<<((asin(var)*180.0)/M_PI)<<endl;
-           break;
-           case 2 :
-           cout <<((acos(var)*180.0)/M_PI)<<endl;
-           break;
-           case 3 :
-           cout<<((atan(var)*180.0)/M_PI)<<endl;
-           break;
-           case 4 :
-           cout<<((asin(1/var)*180.0)/M_PI)<<endl;
-           break;
-           case 5 :
-           cout<<((acos(1/var)*180.0)/M_PI)<<endl;
-           break;
-           case 6 :
-           cout<<((atan(1/var)*180.0)/M_PI)<<endl;
-           break;
-         } 
-        }
-        else
-        {
-          switch(n)
-          {
-           case 1 :
-           cout<<asin(var)<<endl;
-           break;
-           case 2 : cout <<acos(var)<<endl;
-            break;
-            case 3 :cout<<atan(var)<<endl;
-           break;
-           case 4 :cout<<(asin(1/var))<<endl;
-           break;
-           case 5 :cout<<(acos(1/var))<<endl;
-            break;
-            case 6 :cout<<(atan(1/var))<<endl;
-            break;
-         } 
-        }
-      }
-      else
-      {
-        switch(n)
-         {
-           case 1 :cout<<sin(var)<<endl;
-           break;
-           case 2 : cout <<cos(var)<<endl;
-           break;
-           case 3 :cout<<tan(var)<<endl;
-           break;
-           case 4 :cout<<(1/sin(var))<<endl;
-           break;
-           case 5 :cout<<(1/cos(var))<<endl;
-           break;
-           case 6 :cout<<(1/tan(var))<<endl;
-           break;
-         }
-        }
-  } 
-}
-void inverse_trigo(int m)
-{
-  while(1)
-  {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  int n;
-  {
-  cout<<"1 : for Inverse of sin"<<endl;
-  cout<<"2 : for Inverse of cos"<<endl;
-  cout<<"3 : for Inverse of tan"<<endl;
-  cout<<"4 : for Inverse of cosec"<<endl;
-  cout<<"5 : for Inverse of sec"<<endl;
-  cout<<"6 : for Inverse of cot"<<endl;
-  cout<<"7 : back"<<endl;
-  cout<<"Enter your choice : ";
-  }
-  cin>>n;
-  while(cin.fail() || (n>7 || n<=0))
-  {
-    if(Quit())
-    return;
+     Matrix  matrix1(r1,c1,r2,c2);
+    if(matrix1.read()==true)
+      matrix1.cal();
     else
-    {
-      cout<<"Please enter valid number "<<endl;
-      cin>>n;
-    }
-  }
-  switch(n)
-  {
-    case 7 :return ;
-    default : trig_fun(n,m,true);
-    break;
-  }
- } 
+      return;
 }
-void trigo( int m)
-{
-  while(1)
-  {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  int n;
-  cout<<"1 : sin0"<<endl;
-  cout<<"2 : cos0"<<endl;
-  cout<<"3 : tan0"<<endl;
-  cout<<"4 : cosec0"<<endl;
-  cout<<"5 : sec0"<<endl;
-  cout<<"6 : cot0"<<endl;
-  cout<<"7 : back"<<endl;
-  cout<<"Enter your choice : ";
-  cin>>n;
-  while(cin.fail() || (n>7 || n<=0))
-  {
-    if(Quit())
-    return;
-    else
-    {
-      cout<<"Please enter valid number "<<endl;
-      cin>>n;
-    }
-  }
-  switch(n)
-  {
-    case 7 : return;
-    default : trig_fun(n,m,false);
-    break;
-  }
- }
-}
-void trigonometric_function(bool a=false)
-{
 
-  int n;
-  while(1)
-  {
-    system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-   cout<<"Enter 'wq' for <- back "<<endl<<endl;
-   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+void trigonometry( bool a)
+{
+    int k=0;
+    Trigonometry * ptr ;
     if(a)
     {
-      cout<<"1 : for angle in radian "<<endl;
-      cout<<"2 : for angle in degree "<<endl;
-      cout<<"3 : back "<<endl;
-      cout<<"Enter your choice : ";
+        Trigo m;
+        ptr = &m;
     }
     else
     {
-      cout<<"1 : for input in radian "<<endl;
-      cout<<"2 : for input in degree "<<endl;
-      cout<<"3 : back "<<endl;
-      cout<<"Enter your choice : ";
+        Inverse_Trigo t;
+        ptr=&t;
     }
-  cin>>n;
-  while(cin.fail() || (n>3 || n<=0))
-  {
-    if(Quit())
-    return;
-    else
-    {
-      cout<<"Please enter valid number "<<endl;
-      cin>>n;
-    }
-  }
-  switch(n)
-  {
-    case 3 :
-    return ;
-    default:
-    if(!a)
-    trigo(n);
-    else
-    inverse_trigo(n);
-    break;
-  }
- }
+     while(!(ptr->trig_fun()))
+     {
+        while((k=ptr->trigo())!=7)
+        ptr->trigonometry_function(k);
+     }
 }
-void log_base_10()
-{
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  double var;
-  while(1)
-  {
-    cin>>var;
-    while(cin.fail())
-    {
-       if(Quit())
-        return ;
-       else
-       {
-        cout<<"Please enter valid number "<<endl;
-        cin>>var;
-       }
-    }
-    cout<<log10(var)<<endl;
-  } 
-}
-void log_base_e()
-{
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  double var;
-  while(1)
-  {
-    cin>>var;
-    while(cin.fail())
-    {
-       if(Quit())
-        return ;
-       else
-       {
-        cout<<"Please enter valid number "<<endl;
-        cin>>var;
-       }
-    }
-    cout<<log(var)<<endl;
-  } 
-}
-void logerithem()
+void  logerithem()
 {
   while(1)
   {
   system("cls");
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
  cout<<"1 : log value base 10 "<<endl;
  cout<<"2 : log value base e "<<endl;
@@ -625,19 +687,19 @@ void logerithem()
   }
  }
  system("cls");
+ Log l1;
   switch(n)
   {
-   case 1  :cout<<"Enter number for which you want to find logerithem : ";
-    log_base_10();
+   case 1  :
+    l1.log_base_10();
    break;
-   case 2 :cout<<"Enter number for which you want to find logerithem : ";
-   log_base_e();
+   case 2 :
+    l1.log_base_e();
    break;
    case 3 : return ;
   }
+ } 
 }
-}
-
 void exponential()
 {
   system("cls");
@@ -688,38 +750,33 @@ void factorial()
       cout<<"Please enter valid number"<<endl;
   }
   else
-    cout<<"Ans = "<<fact(var)<<endl<<endl;
+    cout<<var<<"! = "<<fact(var)<<endl<<endl;
  }
 }
-void details()
-{
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"-> If you want to back from any page you can simply write 'wq' "<<endl;
-  cout<<"-> If you want to do basic calculaion like addition ,subtraction ,multiplication ,division and power you can perform by basic calculation option "<<endl;
-  cout<<"-> for value of trigonometric fun and its inverse you can use given option respectively "<<endl;
-  
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  string s;
-  cout<<"Enter 'wq' for <- back : ";  
-  while(1)
-  {
-  cin>>s;
-  if(s=="wq")
-  return ;
-  else
-  {
-    cout<<"Wrong input"<<endl;
-  }
-}
-
-}
+// void details()
+// {
+//   system("cls");
+//   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+//   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+//   cout<<" If you want to back from any page you can simply write 'wq' "<<endl;
+//   cout<<" If you want to do basic calculaion like addition ,subtraction ,multiplication ,division and power you can perform by basic calculation option "<<endl;
+//   cout<<" for value of trigonometric fun and its inverse you can use given option respectively "<<endl<<endl;
+//   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+//   string s;
+//   cout<<"Enter 'wq' for <- back : ";  
+//   while(1)
+//   {
+//   cin>>s;
+//   if(s=="wq")
+//   return ;
+//   else
+//     cout<<"Wrong input"<<endl;
+// }
+// }
 int main()
 {
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-  
   int n;
   system("cls");
   cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
@@ -750,34 +807,30 @@ cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
   cout<<"5 : For logerithem "<<endl;
   cout<<"6 : For exponential function base e"<<endl;
   cout<<"7 : For factorial of any number"<<endl;
-  cout<<"8 : How to use"<<endl;
+  // cout<<"8 : How to use"<<endl;
   cout<<"8 : Quit from calculator "<<endl;
   cout<<"Enter your choice : ";
   cin >>n;
-  if(cin.fail() || !(n>0 && n<=8))
+
+  while(cin.fail() || !(n>0 && n<=8))
   {
     if(Quit())
     return 0;
     else
     {
       cout<<"Please enter valid number : ";
-      cout<<"Enter any key to continue ...";
-      getchar();
+       cin>>n;
     }
-    
-    
   }
-  else
-  {
     switch(n)
     {
       case 1 :basic();
       break;
       case 2 : matrix();
       break;
-      case 3 : trigonometric_function(false);
+      case 3 : trigonometry(true);
       break;
-      case 4 : trigonometric_function(true);
+      case 4 : trigonometry(false);
       break;
       case 5 : logerithem();
       break;
@@ -785,10 +838,9 @@ cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
       break;
       case 7 : factorial();
       break;
-      case 8 : details();
-      break;
-      case 9:return 0;
+      // case 8 : details();
+      // break;
+      case 8 : return 0;
     }
-  }
-}
+ }
 }
