@@ -5,33 +5,7 @@
 #include<windows.h>
 #include<iomanip>
 using namespace std;
-bool Quit() //this function is used to check is user want to Quit or not 
-{
-  if(cin.fail())
-  {
-  cin.clear();
-  string s;
-  getline(cin,s);
-  if(s=="wq")
-  return true;
-  else
-  return false;
-  }
-  fflush(stdin);
-}
-bool Quit(int n) //this function if anyone write wq than it will return else it show wrong input
-{
-   string s;
-   while(1)
-   {
-    cout<<"Enter 'wq' for <-back : ";
-    cin>>s;
-    if(s=="wq")
-    return true;
-    else
-    cout<<"Wrong input "<<endl;
-   }
-}
+
 class Basic
 {
   double a;
@@ -144,6 +118,33 @@ public :
 int trigo();
 void trigonometry_function(int n);
 };
+bool Quit() //this function is used to check is user want to Quit or not 
+{
+  if(cin.fail())
+  {
+  cin.clear();
+  string s;
+  getline(cin,s);
+  if(s=="wq")
+  return true;
+  else
+  return false;
+  }
+  fflush(stdin);
+}
+bool Quit(int n) //this function if anyone write wq than it will return else it show wrong input
+{
+   string s;
+   while(1)
+   {
+    cout<<"Enter 'wq' for <-back : ";
+    cin>>s;
+    if(s=="wq")
+    return true;
+    else
+    cout<<"Wrong input "<<endl;
+   }
+}
 int Trigo ::trigo()
 {
     int n;
