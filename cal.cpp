@@ -298,63 +298,53 @@ void  logerithem()
  } 
 }
 
-int Inverse_Trigo ::trigo()
-{
-    system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-    int n;
-    cout<<"1 : for Inverse of sin"<<endl;
-    cout<<"2 : for Inverse of cos"<<endl;
-    cout<<"3 : for Inverse of tan"<<endl;
-    cout<<"4 : for Inverse of cosec"<<endl;
-    cout<<"5 : for Inverse of sec"<<endl;
-    cout<<"6 : for Inverse of cot"<<endl;
-    cout<<"7 : back"<<endl;
-    cout<<"Enter your choice : ";
-    cin>>n;
-    while(cin.fail() || (n > 7 || n <= 0))
-    {
-      if(Quit())
-      return 7;
-      else
-      {
-        cout<<"Please enter valid number "<<endl;
-        cin>>n;
-      }
-    }
-    return n;
-  }
-
-int Trigo ::trigo()
-{
-    int n;
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
- 
-  cout<<"1 : sin0"<<endl;
-  cout<<"2 : cos0"<<endl;
-  cout<<"3 : tan0"<<endl;
-  cout<<"4 : cosec0"<<endl;
-  cout<<"5 : sec0"<<endl;
-  cout<<"6 : cot0"<<endl;
-  cout<<"7 : back"<<endl;
-  cout<<"Enter your choice : ";
-  cin>>n;
-  while(cin.fail() || (n > 7 || n <= 0))
+void Trigo ::trigonometry_function(int n)
   {
-    if(Quit())
-    return 7;
-    else
-    {
-      cout<<"Please enter valid number "<<endl;
-      cin>>n;
-    }
+    system("cls");
+    double x;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
+     cout<<"Enter 'wq' for <- back "<<endl<<endl;
+     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+     while(1)
+     {
+       cin>>var;
+       while(cin.fail())
+       {
+          if(Quit())
+           return  ;
+          else
+          {
+           cout<<"Please enter valid number "<<endl;
+           cin>>var;
+          }
+       }
+        if(m == 2)
+        {
+            x = var;
+            var = (var * M_PI) / 180.0;
+        }
+        else
+        x=var;
+
+        switch(n)
+         {
+             case 1 :cout<<"sin("<<x<<") = "<<sine(var)<<endl;
+             break;
+             case 2 : cout <<"cos("<<x<<") = "<<cosine(var)<<endl;
+             break;
+             case 3 :cout<<"tan("<<x<<") = "<<tangent(var)<<endl;
+             break;
+             case 4 :cout<<"cosec("<<x<<") = "<<(1/sine(var))<<endl;
+             break;
+             case 5 :cout<<"sec("<<x<<") = "<<(1/cosine(var))<<endl;
+             break;
+             case 6 :cout<<"cot("<<x<<") = "<<(1/tangent(var))<<endl;
+             break;
+          }
+          cout<<endl;
+     }
   }
- 
- return n;
-}
 
 void Inverse_Trigo ::trigonometry_function(int n)
   {
@@ -427,57 +417,63 @@ void Inverse_Trigo ::trigonometry_function(int n)
     }
 }
 
-void Trigo ::trigonometry_function(int n)
-  {
+int Inverse_Trigo ::trigo()
+{
     system("cls");
-    double x;
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-     cout<<"Enter 'wq' for <- back "<<endl<<endl;
-     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
-     while(1)
-     {
-       cin>>var;
-       while(cin.fail())
-       {
-          if(Quit())
-           return  ;
-          else
-          {
-           cout<<"Please enter valid number "<<endl;
-           cin>>var;
-          }
-       }
-        if(m == 2)
-        {
-            x = var;
-            var = (var * M_PI) / 180.0;
-        }
-        else
-        x=var;
-
-        cout.precision(10);
-        cout.setf(ios::fixed,ios::floatfield);
-         
-        switch(n)
-         {
-             case 1 :cout<<"sin("<<x<<") = "<<sine(var)<<endl;
-             break;
-             case 2 : cout <<"cos("<<x<<") = "<<cosine(var)<<endl;
-             break;
-             case 3 :cout<<"tan("<<x<<") = "<<tangent(var)<<endl;
-             break;
-             case 4 :cout<<"cosec("<<x<<") = "<<(1/sine(var))<<endl;
-             break;
-             case 5 :cout<<"sec("<<x<<") = "<<(1/cosine(var))<<endl;
-             break;
-             case 6 :cout<<"cot("<<x<<") = "<<(1/tangent(var))<<endl;
-             break;
-          }
-          cout<<endl;
-     }
-     cout.unsetf(ios::fixed);
+    SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+    int n;
+    cout<<"1 : for Inverse of sin"<<endl;
+    cout<<"2 : for Inverse of cos"<<endl;
+    cout<<"3 : for Inverse of tan"<<endl;
+    cout<<"4 : for Inverse of cosec"<<endl;
+    cout<<"5 : for Inverse of sec"<<endl;
+    cout<<"6 : for Inverse of cot"<<endl;
+    cout<<"7 : back"<<endl;
+    cout<<"Enter your choice : ";
+    cin>>n;
+    while(cin.fail() || (n > 7 || n <= 0))
+    {
+      if(Quit())
+      return 7;
+      else
+      {
+        cout<<"Please enter valid number "<<endl;
+        cin>>n;
+      }
+    }
+    return n;
   }
+
+int Trigo ::trigo()
+{
+    int n;
+  system("cls");
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+ 
+  cout<<"1 : sin0"<<endl;
+  cout<<"2 : cos0"<<endl;
+  cout<<"3 : tan0"<<endl;
+  cout<<"4 : cosec0"<<endl;
+  cout<<"5 : sec0"<<endl;
+  cout<<"6 : cot0"<<endl;
+  cout<<"7 : back"<<endl;
+  cout<<"Enter your choice : ";
+  cin>>n;
+  while(cin.fail() || (n > 7 || n <= 0))
+  {
+    if(Quit())
+    return 7;
+    else
+    {
+      cout<<"Please enter valid number "<<endl;
+      cin>>n;
+    }
+  }
+ return n;
+}
+
 
 bool Trigonometry :: trig_fun()
 {
