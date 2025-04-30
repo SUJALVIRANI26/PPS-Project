@@ -68,6 +68,7 @@ void setcolor()
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
 }
+
 void print_instruction()
 {
   system("cls");
@@ -75,7 +76,10 @@ void print_instruction()
   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
   printf("Enter 'wq' for <- back \n\n");
 }
- double fact(int n)
+
+
+
+double fact(int n)
 {
     if(n <= 0 || n == 1 )
     return 1;
