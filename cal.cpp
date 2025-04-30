@@ -55,6 +55,7 @@ class Basic
     }
   }
 };
+
 class Matrix
 {
  int r1;
@@ -90,6 +91,7 @@ class Matrix
    void subtract();
    void mul();
 };
+
 class Log
 {
    double var;
@@ -97,6 +99,7 @@ class Log
    void log_base_10();
    void log_base_e();
 };
+
 class Trigonometry
 {
   protected:
@@ -108,6 +111,7 @@ class Trigonometry
   virtual void trigonometry_function(int n)=0;
   virtual ~Trigonometry(){}
 };
+
 class Trigo : public Trigonometry
 {
   public :
@@ -115,12 +119,14 @@ class Trigo : public Trigonometry
  virtual void trigonometry_function(int n);
 
 };
+
 class Inverse_Trigo : public Trigonometry
 {
 public :
 virtual int trigo();
 virtual void trigonometry_function(int n);
 };
+
 bool Quit() //this function is used to check is user want to Quit or not 
 {
   if(cin.fail())
@@ -135,6 +141,7 @@ bool Quit() //this function is used to check is user want to Quit or not
   }
   fflush(stdin);
 }
+
 bool Quit(int n) // this function if user write wq than it will return true  else it show wrong input
 {
    string s;
@@ -148,11 +155,13 @@ bool Quit(int n) // this function if user write wq than it will return true  els
     cout<<"Wrong input "<<endl;
    }
 }
+
 void setcolor()  //this function set color of text
 {
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
 }
+ 
 void print_instr() //this function print instruction
 {
   system("cls");
@@ -161,7 +170,8 @@ void print_instr() //this function print instruction
   cout<<"Enter 'wq' for <- back "<<endl<<endl;
 }
 
-bool notvalid_number(int  &n,int m)
+/* check whether given number is valid or not if not valid and if use want to quit then return true */
+bool notvalid_number(int &n,int m=0)   
 {
   while(cin.fail() || !(n > 0 && n <= m) )
   {
@@ -172,6 +182,34 @@ bool notvalid_number(int  &n,int m)
       cout<<"Please enter valid number : ";
        cin>>n;
     }
+  }
+  return false;
+}
+bool notvalid_input(double & n)
+{
+  while(cin.fail())
+  {
+     if(Quit())
+      return true ;
+     else
+     {
+      cout<<"Please enter valid number "<<endl;
+      cin>>n;
+     }
+  }
+  return false;
+}
+bool notvalid_input(int & n)
+{
+  while(cin.fail())
+  {
+     if(Quit())
+      return true ;
+     else
+     {
+      cout<<"Please enter valid number "<<endl;
+      cin>>n;
+     }
   }
   return false;
 }
@@ -190,7 +228,7 @@ void factorial()
     if(Quit())
     return;
     else
-      cout<<"Please enter valid number"<<endl;
+      cout<<"Please enter valid number "<<endl;
   }
   else
     cout<<var<<"! = "<<fact(var)<<endl<<endl;
@@ -226,16 +264,9 @@ setcolor();
   {
    cout<<"Enter number for which you want to find logerithem : ";
     cin>>var;
-    while(cin.fail())
-    {
-       if(Quit())
-        return ;
-       else
-       {
-        cout<<"Please enter valid number "<<endl;
-        cin>>var;
-       }
-    }
+    if(notvalid_input(var))
+    return;
+    else
     cout<<"ln("<<var<<") = "<<log(var)<<endl;
   } 
 }
@@ -249,16 +280,9 @@ void Log :: log_base_10()
   {
    cout<<"Enter number for which you want to find logerithem : ";
     cin>>var;
-    while(cin.fail())
-    {
-       if(Quit())
-        return ;
-       else
-       {
-        cout<<"Please enter valid number "<<endl;
-        cin>>var;
-       }
-    }
+    if(notvalid_input(var))
+    return;
+    else
     cout<<"log("<<var<<")"<<": "<<log10(var)<<endl;
   } 
 }
@@ -301,16 +325,8 @@ void Trigo ::trigonometry_function(int n)
      while(1)
      {
        cin>>var;
-       while(cin.fail())
-       {
-          if(Quit())
-           return  ;
-          else
-          {
-           cout<<"Please enter valid number "<<endl;
-           cin>>var;
-          }
-       }
+       if(notvalid_input(var))
+       return ;
         if(m == 2)
         {
             x = var;
@@ -346,16 +362,9 @@ void Inverse_Trigo ::trigonometry_function(int n)
      while(1)
      {
        cin>>var;
-       while(cin.fail())
-       {
-          if(Quit())
-           return ;
-          else
-          {
-           cout<<"Please enter valid number "<<endl;
-           cin>>var;
-          }
-       }
+       if(notvalid_input(var))
+        return;
+
        if(m == 2)
         {
           switch(n)
@@ -446,7 +455,6 @@ int Trigo ::trigo()
  return n;
 }
 
-
 bool Trigonometry :: trig_fun()
 {
     system("cls");
@@ -456,16 +464,8 @@ bool Trigonometry :: trig_fun()
       cout<<"3 : back "<<endl;
       cout<<"Enter your choice : ";
       cin>>m;
-    while( cin.fail() || (m > 3 || m <= 0))
-    {
-        if(Quit())
-         return true;
-        else
-        {
-         cout<<"Please enter valid number "<<endl;
-         cin>>m;
-        }
-    }
+    if(notvalid_number(m,3))
+    return true;
     if(m == 3)
     return true;
     else
@@ -638,59 +638,26 @@ void matrix() // this function is used to take matrix from user
   int r1,r2,c1,c2;
   cout <<"Enter First matrix's number of rows : ";
   cin>>r1;
-
-  while(cin.fail())  // if user not give integer value then say them to give int value 
-  {
-    if(Quit())
-     return ;
-    else
-    {
-      cout<<"Please Enter number : ";
-      cin>>r1;
-    }
-  }
+ 
+  if(notvalid_input(r1))
+  return;
+  
   cout<<"Enter First matrix's number of colums : ";
   cin>>c1;
-  while(cin.fail())
-  {
-    if(Quit())
-     return ;
-    else
-    {
-      cout<<"Please Enter number : ";
-      cin>>c1;
-    }
-  }
+  if(notvalid_input(c1))
+  return;
   fflush(stdin);
   cout<<endl;
   cout<<"Enter Second matrix's number of rows : ";
   cin>>r2;
-
-  while(cin.fail())
-  {
-    if(Quit())
-     return ;
-    else
-    {
-      cout<<"Please Enter number : ";
-      cin>>r2;
-    }
-  }
-
+ if(notvalid_input(r2))
+ return;
   fflush(stdin);
   cout<<"Enter Second matrix's number of colums  :";
   cin>>c2;
 
-  while(cin.fail())
-  {
-    if(Quit())
-     return ;
-    else
-    {
-      cout<<"Please Enter number : ";
-      cin>>c2;
-    }
-  }
+  if(notvalid_input(c2))
+  return;
 
   fflush(stdin);
   cout<<endl;
@@ -709,7 +676,7 @@ void basic ()  // functiokn for basic calculation
   setcolor();
 
   Basic basic_cal;
-
+  cout<<"Enter like example ( 2 + 3 ) "<<endl;
   while(!cin.fail())
   {
     basic_cal.gD();
