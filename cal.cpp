@@ -5,7 +5,7 @@
 #include<windows.h>
 #include<iomanip>
 #include "mathematics.h"
-#include<exception>
+
 using namespace std;
 
 class Basic
@@ -148,14 +148,23 @@ bool Quit(int n) // this function if user write wq than it will return true  els
     cout<<"Wrong input "<<endl;
    }
 }
-
-void factorial()
+void setcolor()
+{
+  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+}
+void print_instr()
 {
   system("cls");
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
   cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+}
+
+void factorial()
+{
+  print_instr();
+  setcolor();
   int var;
   while(1)
  {
@@ -173,27 +182,10 @@ void factorial()
  }
 }
 
-long double exponential( double a)
-{
-    long double result=0;
-    long double m=0;
-    for(int i=0;i<20;i++)
-    {
-        m=1;
-        for(int j=0;j<i;j++)
-            m*=a;
-            result+=m/fact(i);  
-    }
-    return result;
-}
-
 void exponential()
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
   double var;
   while(1)
   {
@@ -213,10 +205,8 @@ void exponential()
 
 void Log :: log_base_e()
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+print_instr();
+setcolor();
   while(1)
   {
    cout<<"Enter number for which you want to find logerithem : ";
@@ -237,10 +227,8 @@ void Log :: log_base_e()
 
 void Log :: log_base_10()
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
   
   while(1)
   {
@@ -265,8 +253,7 @@ void  logerithem()
   while(1)
   {
   system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+ 
  cout<<"1 : log value base 10 "<<endl;
  cout<<"2 : log value base e "<<endl;
  cout<<"3 : back "<<endl;
@@ -300,12 +287,9 @@ void  logerithem()
 
 void Trigo ::trigonometry_function(int n)
   {
-    system("cls");
     double x;
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-     cout<<"Enter 'wq' for <- back "<<endl<<endl;
-     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+    print_instr();
+    setcolor();
      while(1)
      {
        cin>>var;
@@ -348,11 +332,9 @@ void Trigo ::trigonometry_function(int n)
 
 void Inverse_Trigo ::trigonometry_function(int n)
   {
-    system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-     cout<<"Enter 'wq' for <- back "<<endl<<endl;
-     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+     print_instr();
+      setcolor();
+     
      while(1)
      {
        cin>>var;
@@ -419,9 +401,7 @@ void Inverse_Trigo ::trigonometry_function(int n)
 
 int Inverse_Trigo ::trigo()
 {
-    system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  system("cls");
     int n;
     cout<<"1 : for Inverse of sin"<<endl;
     cout<<"2 : for Inverse of cos"<<endl;
@@ -449,8 +429,6 @@ int Trigo ::trigo()
 {
     int n;
   system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
  
   cout<<"1 : sin0"<<endl;
   cout<<"2 : cos0"<<endl;
@@ -478,8 +456,6 @@ int Trigo ::trigo()
 bool Trigonometry :: trig_fun()
 {
     system("cls");
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-     SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
 
       cout<<"1 : for angle in radian "<<endl;
       cout<<"2 : for angle in degree "<<endl;
@@ -524,11 +500,8 @@ void trigonometry(bool a)
 
 void  Matrix :: mul() //mul two matrix and strore in third matrix and print it
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
   double temp=0;
   for(int i = 0; i < r1 ; i++)
   {
@@ -545,11 +518,9 @@ void  Matrix :: mul() //mul two matrix and strore in third matrix and print it
 
 void Matrix:: subtract()//subtract matrix and store in third matrix and print it
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+   print_instr();
+   setcolor();
+
   for(int i = 0 ; i < r1 ; i++)
    {
     for(int j = 0 ; j < c1 ; j++)
@@ -561,11 +532,8 @@ void Matrix:: subtract()//subtract matrix and store in third matrix and print it
 
 void Matrix :: add() //add to matrix and store in third matrix and print it
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
    for(int i = 0 ; i < r1; i++)
    {
     for(int j = 0 ; j < c1 ; j++)
@@ -579,8 +547,6 @@ void Matrix :: cal()
   while(1)
   {
    system("cls");
-   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
    int k;
    cout<<"1 : add "<<endl;
    cout<<"2 : subtract"<<endl;
@@ -682,16 +648,13 @@ bool Matrix :: read()
 }
 void matrix() // this function is used to take matrix from user  
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
   int r1,r2,c1,c2;
   cout <<"Enter First matrix's number of rows : ";
   cin>>r1;
 
-  if(cin.fail())  // if user not give integer value then say them to give int value 
+  while(cin.fail())  // if user not give integer value then say them to give int value 
   {
     if(Quit())
      return ;
@@ -703,7 +666,7 @@ void matrix() // this function is used to take matrix from user
   }
   cout<<"Enter First matrix's number of colums : ";
   cin>>c1;
-  if(cin.fail())
+  while(cin.fail())
   {
     if(Quit())
      return ;
@@ -718,7 +681,7 @@ void matrix() // this function is used to take matrix from user
   cout<<"Enter Second matrix's number of rows : ";
   cin>>r2;
 
-  if(cin.fail())
+  while(cin.fail())
   {
     if(Quit())
      return ;
@@ -733,7 +696,7 @@ void matrix() // this function is used to take matrix from user
   cout<<"Enter Second matrix's number of colums  :";
   cin>>c2;
 
-  if(cin.fail())
+  while(cin.fail())
   {
     if(Quit())
      return ;
@@ -746,35 +709,19 @@ void matrix() // this function is used to take matrix from user
 
   fflush(stdin);
   cout<<endl;
-  try
-  {
+
     Matrix  matrix1(r1,c1,r2,c2);
     if(matrix1.read()==true)
     matrix1.cal();
     else
     return;
-  }
-  catch(exception& e)
-  {
-    cout << e.what() << '\n';
-    cout<<"Enter any key to continue"<<endl;
-    getchar();
-     matrix();
-  }
-  catch(...)
-  {
-    cout<<"Something gone wrong"<<endl;
-  }
-       
+
 }
 
 void basic ()  // functiokn for basic calculation 
 {
-  system("cls");
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
-  cout<<"Enter 'wq' for <- back "<<endl<<endl;
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+  print_instr();
+  setcolor();
 
   Basic basic_cal;
 
@@ -795,8 +742,8 @@ void basic ()  // functiokn for basic calculation
 
 int main()
 {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
+ setcolor();
+
   int n;
   system("cls");
   cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
