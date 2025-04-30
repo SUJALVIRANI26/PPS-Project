@@ -148,17 +148,32 @@ bool Quit(int n) // this function if user write wq than it will return true  els
     cout<<"Wrong input "<<endl;
    }
 }
-void setcolor()
+void setcolor()  //this function set color of text
 {
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_INTENSITY);
 }
-void print_instr()
+void print_instr() //this function print instruction
 {
   system("cls");
   HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
   SetConsoleTextAttribute(hConsole,FOREGROUND_RED);
   cout<<"Enter 'wq' for <- back "<<endl<<endl;
+}
+
+bool notvalid_number(int  &n,int m)
+{
+  while(cin.fail() || !(n > 0 && n <= m) )
+  {
+    if(Quit())
+    return true;
+    else
+    {
+      cout<<"Please enter valid number : ";
+       cin>>n;
+    }
+  }
+  return false;
 }
 
 void factorial()
@@ -260,16 +275,9 @@ void  logerithem()
  int n;
  cout<<"Enter your choice : ";
  cin>>n;
- while(cin.fail() || !(n > 0 && n < 4))
- {
-  if(Quit())
-  return;
-  else
-  {
-    cout<<"Please enter valid number : ";
-    cin>>n;
-  }
- }
+ if(notvalid_number(n,3))
+ return;
+
  system("cls");
  Log l1;
   switch(n)
@@ -412,16 +420,9 @@ int Inverse_Trigo ::trigo()
     cout<<"7 : back"<<endl;
     cout<<"Enter your choice : ";
     cin>>n;
-    while(cin.fail() || (n > 7 || n <= 0))
-    {
-      if(Quit())
-      return 7;
-      else
-      {
-        cout<<"Please enter valid number "<<endl;
-        cin>>n;
-      }
-    }
+    if(notvalid_number(n,7))
+    return 7;
+
     return n;
   }
 
@@ -439,16 +440,9 @@ int Trigo ::trigo()
   cout<<"7 : back"<<endl;
   cout<<"Enter your choice : ";
   cin>>n;
-  while(cin.fail() || (n > 7 || n <= 0))
-  {
-    if(Quit())
-    return 7;
-    else
-    {
-      cout<<"Please enter valid number "<<endl;
-      cin>>n;
-    }
-  }
+  if(notvalid_number(n,7))
+  return 7;
+
  return n;
 }
 
@@ -553,19 +547,10 @@ void Matrix :: cal()
    cout<<"3 : multiplication "<<endl;
    cout<<"4 : back "<<endl;
    cout<<"Enter your choice :";
-   while(1)
-   {
-    cin>>k;
-    if(cin.fail() || !(k > 0 && k <= 4))
-    {
-     if(Quit()) 
-       return;
-     else
-     cout<< "Please enter  number between 1 to 4 : ";
-    }
-    else
-     break;
-   }
+   cin>>k;
+   if(notvalid_number(k,4))
+   return ;
+
     switch(k)
     {
      case 1 : 
@@ -573,7 +558,7 @@ void Matrix :: cal()
        add();
        else
        {
-        cout<<"addition is not possible "<<endl;
+        cout<<"addition is not possible "<<endl<<endl;
         getchar();
         cout<<"Enter any key to continue ....."<<endl;
         getchar();
@@ -584,7 +569,7 @@ void Matrix :: cal()
         subtract();
         else
         {
-         cout<<"subtraction is not possible"<<endl;
+         cout<<"subtraction is not possible"<<endl<<endl;
          getchar();
          cout<<"Enter any key to continue ....."<<endl;
          getchar();
@@ -595,7 +580,7 @@ void Matrix :: cal()
         mul();
         else
         {
-         cout<<"multiplication is not possible "<<endl;
+         cout<<"multiplication is not possible "<<endl<<endl;
          getchar();
          cout<<"Enter any key to continue ....."<<endl;
          getchar();
@@ -778,16 +763,9 @@ cout<<endl<<endl<<endl<<endl<<endl<<endl<<endl;
   cout<<"Enter your choice : ";
 
   cin >>n;
-  while(cin.fail() || !(n > 0 && n <= 8) )
-  {
-    if(Quit())
-    return 0;
-    else
-    {
-      cout<<"Please enter valid number : ";
-       cin>>n;
-    }
-  }
+  if(notvalid_number(n,8))
+   return 0;
+
     switch(n)
     {
       case 1 : basic();
